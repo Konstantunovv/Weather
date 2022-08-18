@@ -3,49 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <title>Погодное приложение</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
 </head>
 <header>
     <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
-      <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
-        <span class="fs-4">Weather</span>
-      </a>
-      <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-        <a class="me-3 py-2 text-dark text-decoration-none"
-           href="#">Главная</a>
-        <a class="me-3 py-2 text-dark text-decoration-none"
-           href="#">Информация</a>
-        <a class="me-3 py-2 text-dark text-decoration-none"
-           href="#">Документация</a>
-      </nav>
+        <a href="/"
+           class="d-flex align-items-center text-dark text-decoration-none">
+            <span class="fs-4">Weather</span>
+        </a>
+        <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+            <a class="me-3 py-2 text-dark text-decoration-none"
+               href="#">Главная</a>
+            <a class="me-3 py-2 text-dark text-decoration-none"
+               href="#">Информация</a>
+            <a class="me-3 py-2 text-dark text-decoration-none"
+               href="#">Документация</a>
+        </nav>
     </div>
     <div class="container mt-5">
         <div class="row">
             <div class="col-5 offset-1">
                 <h1>Погода в вашем городе</h1>
                 <form action="" method="post">
-                 {%  csrf_token %}
-                 <label for="city">Город</label>
-                 {{ form.name }}
-                 <input type="submit" name="send" value="Узнать"
-                       class="mt-2 btn btn-danger">
+                    {% csrf_token %}
+                    <label for="city">Город</label>
+                    {{ form.name }}
+                    <input type="submit" name="send" value="Узнать"
+                           class="mt-2 btn btn-danger">
                 </form>
             </div>
             <div class="col-4 offset-2">
                 <h1>Информация</h1>
 
                 {% for info in all_info %}
-                <div class="alert alert-success">
-                    <div class="row">
-                        <div class="col-9">
-                            <b> Город:</b>{{ info.city }}<br/>
-                            <b>Температура:</b>{{ info.temp }}<sup>o</sup>
-                        </div><div class="col-2 offset-1">
-                    <img src="http://openweathermap.org/img/w/{{ info.icon }}.png" alt="Foto">
-                </div>
+                    <div class="alert alert-success">
+                        <div class="row">
+                            <div class="col-9">
+                                <b> Город:</b>{{ info.city }}<br/>
+                                <b>Температура:</b>{{ info.temp }}<sup>o</sup>
+                            </div>
+                            <div class="col-2 offset-1">
+                                <img src="http://openweathermap.org/img/w/{{ info.icon }}.png"
+                                     alt="Foto">
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
-        </div>
-       {% endfor %}
-    </div>
 </header>
 </html>
