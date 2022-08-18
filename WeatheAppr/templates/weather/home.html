@@ -23,22 +23,29 @@
         <div class="row">
             <div class="col-5 offset-1">
                 <h1>Погода в вашем городе</h1>
-                <label for="city">Город</label>
-                <from action="">
-                    <input type="text", id="city", class="form-control"
-                           name="city",
-                           placeholder="Введите город">
-                    <input type="submit", name="send", value="Узнать",
-                           class="mt-2 btn btn-danger">
-                </from>
+                <form action="" method="post">
+                 {%  csrf_token %}
+                 <label for="city">Город</label>
+                 {{ form.name }}
+                 <input type="submit" name="send" value="Узнать"
+                       class="mt-2 btn btn-danger">
+                </form>
             </div>
-            <div class="col-4 offset-1">
+            <div class="col-4 offset-2">
                 <h1>Информация</h1>
-                <div class="alert alert-danger">
-                    Погода в вашем городе
+
+                {% for info in all_info %}
+                <div class="alert alert-success">
+                    <div class="row">
+                        <div class="col-9">
+                            <b> Город:</b>{{ info.city }}<br/>
+                            <b>Температура:</b>{{ info.temp }}<sup>o</sup>
+                        </div><div class="col-2 offset-1">
+                    <img src="http://openweathermap.org/img/w/{{ info.icon }}.png" alt="Foto">
                 </div>
             </div>
         </div>
+       {% endfor %}
     </div>
 </header>
 </html>
