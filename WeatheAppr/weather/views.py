@@ -1,7 +1,9 @@
 import requests as rq
+
 from django.shortcuts import render
-from .models import City
+
 from .forms import CityForm
+from .models import City
 
 
 def index(request):
